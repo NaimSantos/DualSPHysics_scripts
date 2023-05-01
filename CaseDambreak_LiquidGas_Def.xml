@@ -22,92 +22,110 @@
             <commands>
                 <mainlist>
                     <setshapemode>real | dp | fluid | bound | void</setshapemode>
+                    <setdrawmode mode="wire" />
+                    <!-- Boundaries -->
+                    <setmkbound mk="0" /><!-- Outer -->
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0.0" y="0" z="0.0" />
+                        <size x="1" y="0.1" z="0.8" />
+                    </drawbox>
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="-0.005" y="0" z="-0.005" />
+                        <size x="1.01" y="0.1" z="0.81" />
+                    </drawbox>
+                    <setmkbound mk="1" /><!-- Inner lower -->
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0.1" y="0" z="0.1" />
+                        <size x="0.8" y="0.1" z="0.2" />
+                    </drawbox>
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0.105" y="0" z="0.103" />
+                        <size x="0.79" y="0.1" z="0.194" />
+                    </drawbox>
+                    <setmkbound mk="2" /><!-- Inner upper -->
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0.1" y="0" z="0.35" />
+                        <size x="0.8" y="0.1" z="0.35" />
+                    </drawbox>
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0.105" y="0" z="0.353" />
+                        <size x="0.79" y="0.1" z="0.344" />
+                    </drawbox>
                     <setdrawmode mode="full" />
-					<setmkbound mk="0" />
-					<!--A to C -->
-                    <drawlines>
-                       <point x="0.0" y="0" z="0.0" />
-                       <point x="0.0" y="0" z="1.5" />
-                       <point x="0.7" y="0" z="1.5" />
-                    </drawlines>
-                    <!--A to C V2-->
-                    <drawlines>
-                       <point x="-0.005" y="0" z="0.0" />
-                       <point x="-0.005" y="0" z="1.505" />
-                       <point x="0.7" y="0" z="1.505" />
-                    </drawlines>
-                    <!--D to F -->
-					<drawlines>
-                       <point x="0.1" y="0" z="0.0" />
-                       <point x="0.1" y="0" z="1.45" />
-                       <point x="0.7" y="0" z="1.45" />
-                    </drawlines>
-                    <!--D to F V2-->
-					<drawlines>
-                       <point x="0.105" y="0" z="0.0" />
-                       <point x="0.105" y="0" z="1.445" />
-                       <point x="0.7" y="0" z="1.445" />
-                    </drawlines>
-                    <!--moving structure-->
-                   <setmkbound mk="1" />
+                    <setmkbound mk="3" /><!--Movel -->
                     <drawbox>
                         <boxfill>solid</boxfill>
-                        <point x="0.005" y="0" z="0.0" />
-                        <size x="0.090" y="0.1" z="0.01 " />
+                        <point x="0.1" y="0" z="0.305" />
+                        <size x="0.02" y="0.1" z="0.040" />
                     </drawbox>
-                    <!-- bottom liquid body (reservoir)-->
-                    <setmkfluid mk="5" name="OIL" />
+                    <!-- Oleo -->
+                    <setmkfluid mk="5" name="OIL" /><!-- lower -->
                     <drawbox>
                         <boxfill>solid</boxfill>
-                        <point x="0.005" y="0" z="0.010" />
-                        <size x="0.090" y="0.1" z="0.985" />
+                        <point x="0.005" y="0" z="0.005" />
+                        <size x="0.990" y="0.1" z="0.090" />
                     </drawbox>
-                    <!-- upper liquid body-->
-                    <setmkfluid mk="6" name="OIL" />
+                    <setmkfluid mk="6" name="OIL" /><!-- upper -->
                     <drawbox>
                         <boxfill>solid</boxfill>
-                        <point x="0.005" y="0" z="0.7" />
-                        <size x="0.090" y="0.1" z="0.795" />
+                        <point x="0.005" y="0" z="0.705" />
+                        <size x="0.990" y="0.1" z="0.090" />
                     </drawbox>
-                    <!-- gas body (inside) -->
-                    <setmkfluid mk="7" name="GAS" />
+                    <setmkfluid mk="7" name="OIL" /><!-- left -->
                     <drawbox>
                         <boxfill>solid</boxfill>
-                        <point x="0.005" y="0" z="0.6" />
-                        <size x="0.090" y="0.1" z="0.10" />
+                        <point x="0.005" y="0" z="0.1" />
+                        <size x="0.090" y="0.1" z="0.6" />
+                    </drawbox>
+                    <setmkfluid mk="8" name="OIL" /><!-- right -->
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0.905" y="0" z="0.1" />
+                        <size x="0.090" y="0.1" z="0.6" />
+                    </drawbox>
+                    <!-- Gas -->
+                    <setmkfluid mk="9" name="GAS" />
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0.12" y="0" z="0.305" />
+                        <size x="0.78" y="0.1" z="0.04" />
                     </drawbox>
                 </mainlist>
             </commands>
         </geometry>
-        <motion>
-            <objreal ref="1">
+         <motion>
+            <objreal ref="3">
                 <begin mov="1" start="0" finish="4.0" />
                 <mvrect id="1" duration="10">
-                    <vel x="0.2" y="0" z="0" />
+                    <vel x="0.5" y="0" z="0" />
                 </mvrect>
             </objreal>
         </motion>
         <properties> %Material properties for liquid-gas flows are set here.
             <links>
-                <link mkbound="0,1" property="OIL"/>
-                <link mkfluid="4,5,6" property="OIL" />
-                <link mkfluid="7" property="GAS" />
-            </links>
+                <link mkbound="0,1,2,3" property="OIL"/>
+                <link mkfluid="5,6,7,8" property="OIL" />
+                <link mkfluid="9" property="GAS" />
+                </links>
             <property name="OIL">
                 <rhop0 value="850"/>
                 <gamma value="7"/>
                 <cs0 value="24.14"/>
                 <visco value="0.03"/>
                 <phasetype value="0"/>
-                <surfcoef value="0" />
             </property>
             <property name="GAS">
                 <rhop0 value="1.18"/>
                 <gamma value="1.4"/>
                 <cs0 value="343.28"/>
-                <visco value="0.02"/>
+                <visco value="0.03"/>
                 <phasetype value="1"/>
-                <surfcoef value="0" />
             </property>
         </properties>
     </casedef>
@@ -133,7 +151,7 @@
             <parameter key="DtMin" value="0.00000001" comment="Minimum time step (default=coefdtmin*h/speedsound)" units_comment="seconds" />
             <parameter key="#DtFixed" value="DtFixed.dat" comment="Dt values are loaded from file (default=disabled)" />
             <parameter key="DtAllParticles" value="0" comment="Velocity of particles used to calculate DT. 1:All, 0:Only fluid/floating (default=0)" />
-            <parameter key="TimeMax" value="0.4" comment="Time of simulation" units_comment="seconds" />
+            <parameter key="TimeMax" value="0.5" comment="Time of simulation" units_comment="seconds" />
             <parameter key="TimeOut" value="0.01" comment="Time out data" units_comment="seconds" />
             <parameter key="IncZ" value="2" comment="Increase of Z+" units_comment="decimal" />
             <parameter key="PartsOutMax" value="1" comment="%/100 of fluid particles allowed to be excluded from domain (default=1)" units_comment="decimal" />
